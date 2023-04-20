@@ -3,7 +3,7 @@
 
 /**
  * main - C program to printing a quote
- * Return : 1 (Success)
+ * Return: Always 1 (Success)
  */
 int main(void)
 {
