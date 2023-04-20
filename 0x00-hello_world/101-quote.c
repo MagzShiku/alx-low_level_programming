@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h>
+#include <unistd.h>
 
 /**
  * main - C program to printing a quote
@@ -7,8 +7,7 @@
  */
 int main(void)
 {
-	message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
-
-	fwrite(message, 1, 59, stderr);
+	write(2,
+	"and that piece of art is useful\" - Dora Korpa, 2015-10-19\n", 59);
 	return (1);
 }
