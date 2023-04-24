@@ -10,21 +10,21 @@
 
 int main(void)
 {
-	char x;
-	char y;
+	char x = 'a';
 
-	x = 'a';
-
-	for (x = 'a'; x <= 'z'; x++)
+	while (x <= 'z')
 	{
 		putchar(x);
 		x++;
+
 	}
 
-	for (y = 'A'; y <= 'Z'; y++)
+	x = 'A';
+
+	while (x <= 'Z')
 	{
-		putchar(y);
-		y++;
+		putchar(x);
+		x++;
 	}
 	putchar ('\n');
 	return (0);
