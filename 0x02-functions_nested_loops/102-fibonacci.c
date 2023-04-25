@@ -16,8 +16,8 @@ int main(void)
 	for (z = 0; z < 50; z++)
 	{
 	sum = a + b;
-	printf("%lu", sum);
-	}
+	printf("%d", sum);
+
 	a = b;
 	b = sum;
 
@@ -26,6 +26,9 @@ int main(void)
 	printf("\n");
 	}
 	else
+	{
 		printf(",");
-		return (0);
+	}
+	}
+	return (0);
 }
