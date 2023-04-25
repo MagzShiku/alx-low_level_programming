@@ -10,13 +10,13 @@ int main(void)
 {
 	int z;
 	unsigned long a = 0;
-	unsigned long b = 1;
+	int b = 1;
 	int sum;
 
 	for (z = 0; z < 50; z++)
 	{
 	sum = a + b;
-	printf("%d", sum);
+	printf("%u", sum);
 
 	a = b;
 	b = sum;
