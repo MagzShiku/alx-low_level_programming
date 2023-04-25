@@ -1,27 +1,28 @@
 #include "main.h"
+#include <stdio.h>
 /**
- * largest_number -  the variabble to start this code
- * @a: first number
- * @b: second number
- * @c: third number
+ * largest_number -  the variable to start this code
+ * @a: first parameter
+ * @b: second parameter
+ * @c: third parameter
  * Return: larstest value
  */
 
-int larget_number(int a, int b, int c)
+int largest_number(int a, int b, int c)
 {
-int z;
+int largest;
 
-if (a > b && a >c)
+if (a > b && a > c)
 {
-	z = a;
-}
-else if (a > b && c > a)
-{
-	z = c;
+	largest = a;
 }
 else if (b > c)
 {
-	z = b;
+	largest = b;
 }
-return (z);
+else
+{
+	largest = c;
+}
+return (largest);
 }
