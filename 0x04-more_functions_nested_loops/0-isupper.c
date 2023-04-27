@@ -2,15 +2,16 @@
 
 /**
  * _isupper - checking for upper case character
+ * @c: parameter to be cheachde for
+ * Return: 1 if c is upper case and 0 otherwise
  *
- * Return: 1 if c is upper case
- * Return: 0 if otherwise
  */
 
 int _isupper(int c)
 {
-	for (c = 65; c <= 90; c++)
-		       _putchar("%\d" ':');
-			_putchar('\n');
-			return (1);
+	if (c >= 65 && c <= 90)
+	{
+		return (1);
+	}
+	return (0);
 }
