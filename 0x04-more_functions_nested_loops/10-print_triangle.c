@@ -13,7 +13,7 @@ void print_triangle(int size)
 	int a;
 	int b;
 	int c;
-	
+
 	if (size <= 0)
 	{
 		putchar('\n');
@@ -32,8 +32,8 @@ void print_triangle(int size)
 			}
 			putchar('\n');
 		}
-		
+
 	}
-	
+
 }
 
