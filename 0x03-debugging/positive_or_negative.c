@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-
+#include "main.h"
 /**
  * positive_or_negative - Entry point
  * Description: 'to return a -ve or +ve number of a random number'
  * Return: Always 0 (Success)
  */
 
-int positive_or_negative(void)
+void positive_or_negative(void)
 {
 	int n;
 
@@ -26,6 +26,6 @@ int positive_or_negative(void)
 	{
 		printf("%d is negative\n", n);
 	}
+return;
 
-	return (0);
 }
