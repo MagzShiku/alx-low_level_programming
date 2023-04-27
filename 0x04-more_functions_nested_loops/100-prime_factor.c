@@ -15,6 +15,7 @@ int main(void)
 		while ((b % a == 0) && (b != a))
 			b = b / a;
 	}
-	printf("%lu\n", b);
+	printf("%lu", b);
+	printf("\n");
 	return (0);
 }
