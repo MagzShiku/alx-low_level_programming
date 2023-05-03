@@ -11,43 +11,32 @@
 
 int main(void)
 {
-	char *a = "!@#$%&*";
-	char *b = "abcdefghijklmnopqrstuvwxyz";
-	char *c = "ABCDEFGHIJKLMNOPQRSTUVWQYZ";
-	char *i = "0123456789";
-	int len = 8;
-	char pass_w[len + 1];
-	int n;
-	int type;
-	int length;
+	char pass_w[8];
+	int i;
+	int num;
 
-	srand(time(NULL));
+	srand(time(0));
 
-	for (n = 0; n < len; n++)
+	for (i = 0; i < 8; i++)
 	{
-		type = rand() % 4;
-		switch (type) {
-			case 0:
-				length = strlen(a);
-				pass_w[n] = a[rand() % length];
-				break;
-			case 1:
-				length = strlen(b);
-                                pass_w[n] = b[rand() % length];
-                                break;
-			case 2:
-                                length = strlen(c);
-                                pass_w[n] = c[rand() % length];
-                                break;
-			case 3:
-                                length = strlen(i);
-                                pass_w[n] = i[rand() % length];
-                                break;
+		num = rand() % 62;
+
+		if (num < 26)
+		{
+			pass_w[i] = 'a' + num;	
+		}
+		else if (num < 52)
+		{
+			pass_w[i] = 'A' + num - 26;
+		}
+		else
+		{
+			pass_w[i] = '0' + num - 52;
 		}
 	}
-	pass_w[len] = '\0';
-	printf("Password: %s\n", pass_w);
-	return (0);
+pass_w[8] = '\0';
 
+printf("%s", pass_w);
 
+return (0);
 }
