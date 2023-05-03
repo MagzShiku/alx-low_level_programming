@@ -16,7 +16,7 @@ int main(void)
 	char *c = "ABCDEFGHIJKLMNOPQRSTUVWQYZ";
 	char *i = "0123456789";
 	int len = 8;
-	char pass[len + 1];
+	char pass_w[len + 1];
 	int n;
 	int type;
 	int length;
@@ -29,24 +29,24 @@ int main(void)
 		switch (type) {
 			case 0:
 				length = strlen(a);
-				pass[n] = a[rand() % length];
+				pass_w[n] = a[rand() % length];
 				break;
 			case 1:
 				length = strlen(b);
-                                pass[n] = b[rand() % length];
+                                pass_w[n] = b[rand() % length];
                                 break;
 			case 2:
                                 length = strlen(c);
-                                pass[n] = c[rand() % length];
+                                pass_w[n] = c[rand() % length];
                                 break;
 			case 3:
                                 length = strlen(i);
-                                pass[n] = i[rand() % length];
+                                pass_w[n] = i[rand() % length];
                                 break;
 		}
 	}
-	pass[len] = '\0';
-	printf("Password: %s\n", pass);
+	pass_w[len] = '\0';
+	printf("Password: %s\n", pass_w);
 	return (0);
 
 
