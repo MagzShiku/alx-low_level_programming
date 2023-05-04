@@ -11,18 +11,18 @@ char *cap_string(char *str)
 {
 	char *i = ",;.!?\"(){}";
 	char *c = str;
-	
+
 	while (*c)
 	{
 		if (*c >= 'a' && *c < 'z')
-		{	
+		{
 			if (c == str || strchr(i, *(c - 1)) != NULL)
 			{
-				*c -= 32; 
+				*c -= 32;
 			}
-		
+
 		}
-			
+
 		c++;
 	}
 
