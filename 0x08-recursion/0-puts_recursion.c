@@ -12,14 +12,13 @@ void _puts_recursion(char *s) /*the prototype*/
 {
 	if (*s == '\0')
 	{
-		return;
 		printf("\n");
+		return;
 	}
 	else
 	{
-	_putchar("%c"*s);
+	printf("%c", *s);
 	_puts_recursion(++s);
-	_putchar('\n');
 	}
 
 }
