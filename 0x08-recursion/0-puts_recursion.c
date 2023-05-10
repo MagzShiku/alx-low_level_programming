@@ -17,7 +17,7 @@ void _puts_recursion(char *s) /*the prototype*/
 	}
 	else
 	{
-	_putchar(*s);
+	_putchar("%c"*s);
 	_puts_recursion(++s);
 	_putchar('\n');
 	}
