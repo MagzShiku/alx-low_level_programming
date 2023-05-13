@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 /**
- *
  * main -entry point
  * @argc: aurgument count
  * @argv: aurgument vector
