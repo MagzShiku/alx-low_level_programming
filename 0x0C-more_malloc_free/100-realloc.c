@@ -21,36 +21,42 @@
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *new_p;
-	unsigned int small_size;
+	char *new_p;
+	char *old_p;
+	unsigned int i;
 
-	if (new_size == 0)
+	if (new_size == 0 && ptr)
 	{
 		free(ptr);
 		return (NULL);
 	}
-
 	if (ptr == NULL)
-	{
 		return (malloc(new_size));
-	}
 
-	if (new_size == old_size)
-	{
-		return (ptr);
-	}
+	if (!ptr)
+		return (malloc(new_size));
 
 	new_p = malloc(new_size);
 
 	if (new_p == NULL)
-	{
 		return (NULL);
+
+	old_p = ptr;
+
+	if (new_size < old_size)
+	{
+		for (i = 0; i < new_size; i++)
+			new_p[i] = old_p[i];
 	}
 
-	small_size = (old_size < new_size) ? old_size : new_size;
-	memcpy(new_p, ptr, small_size);
+	if(new_size > old_size)
+	{
+		for (i = 0; i < old_size; i++)
+			new_p[i] = old_p[i];
+	}
 
 	free(ptr);
+
 	return (new_p);
 
 }
