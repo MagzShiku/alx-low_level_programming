@@ -26,11 +26,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		return (NULL);
 	}
-
-	/**
-	 * allocate memory and copy name string including '0' null
-	 */
-	dog_new->name = strdup(name);
+	 /* allocate memory and copy name string including '0' null*/
+	dog_new->name = (char *)malloc(strlen(name) + 1);
 
 	if (dog_new->name == NULL)
 	{
@@ -38,11 +35,11 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
+	strcpy(dog_new->name, name);
+
 	dog_new->age = age;
 
-	/* allocate memory and copy owner string */
-
-	dog_new->owner = strdup(owner);
+	dog_new->owner = (char *)malloc(strlen(owner) + 1);
 
 	if (dog_new->owner == NULL)
 	{
@@ -50,6 +47,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(dog_new);
 		return (NULL);
 	}
+	strcpy(dog_new->owner, owner);
 
 	return (dog_new);
 
