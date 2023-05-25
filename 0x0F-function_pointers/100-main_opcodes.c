@@ -2,18 +2,18 @@
 #include <stdlib.h>
 
 /**
- * main - a function that prints the opcodes of its own main function.
- * @argc: Argument count
- * @argv: argument vector
- * Return: Always 0 for success
+ * _opcode - a function that prints the opcodes of
+ * its own main function.
+ * @byt_num: number of bytes in the code
+ *
  */
 
 void _opcode(int byt_num)
 {
-	unsigned char* ptr;
+	unsigned char *ptr;
 	int i;
-	
-	ptr = (unsigned char*)_opcode;
+
+	ptr = (unsigned char *)_opcode;
 
 	for (i = 0; i < byt_num; i++)
 	{
@@ -22,11 +22,17 @@ void _opcode(int byt_num)
 	printf("\n");
 }
 
-int main(int argc, char* argv[])
+/**
+ * main - main functin
+ * @argc:  Argument count
+ * @argv: Argument vector
+ * Return: 0
+ */
+int main(int argc, char *argv[])
 {
 	int byt_num;
 	int i;
-	
+
 	if (argc != 2)
 	{
 		printf("Error\n");
