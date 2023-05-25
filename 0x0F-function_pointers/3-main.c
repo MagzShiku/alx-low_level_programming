@@ -17,15 +17,15 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	char *operator;
 	int result;
 	int (*op_func)(int, int);
-	
+
 	num1 = atoi(argv[1]);
-        num2 = atoi(argv[3]);
+	num2 = atoi(argv[3]);
 	operator = argv[2];
 
 	if (argc != 4)
 	{
 		printf("Error");
-		return(98);
+		return (98);
 	}
 
 	op_func = get_op_func(operator);
