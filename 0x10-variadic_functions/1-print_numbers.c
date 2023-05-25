@@ -19,7 +19,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	{
 		printf("%d", va_arg(lst, int));
 		/* print the numer in question */
-
+/* check if sep is not NUll, and not previous num */
 		if (separator != NULL && i < n - 1)
 		{
 			printf("%s", separator);
