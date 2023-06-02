@@ -15,10 +15,9 @@ main:
 	xor eax, eax
 	call printf
 
-	add rsp, 16
+	add rsp, 8
 
 	xor eax, eax
-	add rsp, 8
 	ret
 
 section .rodata
