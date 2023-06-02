@@ -5,7 +5,7 @@
 /**
  * print_list - function that prints elements in lists_t
  * @h: containc the elements
- * Returns: number of nodes
+ * Return: number of nodes
  */
 
 size_t print_list(const list_t *h)
@@ -25,5 +25,5 @@ size_t print_list(const list_t *h)
 		h = h->next;
 	}
 
-	return i;
+	return (i);
 }
