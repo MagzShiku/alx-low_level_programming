@@ -4,7 +4,8 @@
  * listint_len - a function that reeturns number of ele in listsint_t
  * listint_t - a custon datatype that lists elements
  * here we shall eiterate through while loop just like @task 0
- * size_t used to count the size and count of objects in memory
+ * size_t used to count the size and count of objects in memory 
+ * we have also added stddef.h in lists.h
  * @h: the pointer to where the list is
  * Return: Number of elements
  */
