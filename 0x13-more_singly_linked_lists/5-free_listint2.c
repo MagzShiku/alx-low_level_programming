@@ -9,16 +9,16 @@
 
 void free_listint2(listint_t **head)
 {
-	listint_t *i; /* represents current list */
-	listint_t *n; /* represents the next node */
+	listint_t *_test; /* to temporarily hold the values */
 
-	i = *head; /* iterates and traverses from head pointer */
+	if (head == NULL || *head == NULL)
+		return;
 
-	while (i != NULL)
+	while (*head)
 	{
-		n = i->next;
-		free(i);
-		i = n;
+		_test = (*head)->next;
+		free(head);
+		*head = _test;
 	}
 	*head = NULL; /* this function sets head to NULL */
 }
