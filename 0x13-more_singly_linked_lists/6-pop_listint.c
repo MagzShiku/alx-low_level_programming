@@ -12,16 +12,14 @@ int pop_listint(listint_t **head)
 	int d; /* represents data */
 	listint_t *tmp_var; /* store data in a temporary variable  */
 
-	d = ((*head)->n);
-	tmp_var = *head;
-	*head = ((*head)->next);
-
-	if (*head == NULL)
-	{
+	if (head == NULL || *head == NULL)
 		return (0);
-	}
 
-	free(tmp_var);
+	d = (*head)->n;
+	tmp_var = (*head)->next;
+	free(*head);
+	*head = tmp_var;
+
 	return (d);
 
 }
