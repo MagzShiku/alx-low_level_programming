@@ -3,7 +3,7 @@
 /**
  * add_nodeint_end - function that adds node to the end of list
  * @head: checks first for head
- * @h: the elements in the list
+ * @n: the elements in the list
  * Return: Pointer to the node with pointer to NULL
  * Return NULL if failed
  */
@@ -39,7 +39,7 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 	return (end_node);
 }
 /**
- * end_node will be added to the end of listint_t
+ * add_nodeint_end - end_node will be added to the end of listint_t
  * existing is what will be used to traverse the list
  * we allocared memory using malloc
  * if memory allocation fails, NULL is returned
