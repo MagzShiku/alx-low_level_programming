@@ -19,7 +19,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	unsigned int i;
 
 	node_n = malloc(sizeof(listint_t));
-	
+
 	/* fist check is list is empty */
 	if (node_n == NULL)
 	{
@@ -37,12 +37,12 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	e = *head;
 	i = 0;
 
-	while (e != NULL && i < idx -1)
+	while (e != NULL && i < idx - 1)
 	{
 		e = e->next;
 		i++;
 	}
-	
+
 	/* wewe care going through the list to check for poistion */
 	if (e == NULL)
 	{
