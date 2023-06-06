@@ -19,13 +19,12 @@ listint_t *find_listint_loop(listint_t *head)
 
 	if (head == NULL)
 		return (NULL);
-	
 	node_count = 1;
 	_temp = head;
-	while (_temp->next !=NULL)
+	while (_temp->next != NULL)
 	{
 		node_count++;
-		_temp = _temp->next;		
+		_temp = _temp->next;
 	}
 
 	a = head;
