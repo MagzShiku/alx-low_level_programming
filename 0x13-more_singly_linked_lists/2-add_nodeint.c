@@ -5,7 +5,7 @@
  * @head: the head is the first adress in a node
  * @n: the adress of list of nodes in a link
  * Return: Adress of new elenemt
- * listint_t is not an inbuilt data type. 
+ * listint_t is not an inbuilt data type.
  * It is customised and we have defined it in a typedef
  * NULL in case of fail
  */
@@ -25,6 +25,6 @@ listint_t *add_nodeint(listint_t **head, const int n)
 	new_element->next = *head;
 	*head = new_element;
 
-	return(new_element);
+	return (new_element);
 
 }
