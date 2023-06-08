@@ -13,32 +13,20 @@
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int _outcome;
-	int length;
-	int i, j;
+	int i;
 	int _val;
-	int _pow;
-	int _num;
 
 	_outcome = 0;
-	length = strlen(b);
-	_num = 1;
 
 	if (b == NULL)
 		return (0);
 
-	for (i = length - 1; i >= 0; i--)
+	for (i = 0; b[i] != '\0'; i++)
 	{
 		if (b[i] == '0' || b[i] == '1')
 		{
 			_val = b[i] - '0';
-			_pow = length - i - 1;
-			_num = 1;
-
-			for (j = 0; j < _pow; j++)
-			{
-				_num *= 2;
-			}
-			_outcome += _val * _num;
+			_outcome = 2 * _outcome + _val;
 		}
 		else
 		{
