@@ -32,6 +32,7 @@ unsigned int binary_to_uint(const char *b)
 		{
 			_val = b[i] - '0';
 			_pow = length - i - 1;
+			_num = 1;
 
 			for (j = 0; j < _pow; j++)
 			{
