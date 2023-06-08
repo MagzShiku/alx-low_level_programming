@@ -2,7 +2,7 @@
 
 
 /**
- * binary_to_uint - function that converts a 
+ * binary_to_uint - function that converts a
  * binary number to an unsigned int
  * @b: pointing to a string of 0 and 1 chars
  * Return: the converted number, or 0 if
@@ -32,16 +32,16 @@ unsigned int binary_to_uint(const char *b)
 		{
 			_val = b[i] - '0';
 			_pow = length - i - 1;
-			
+
 			for (j = 0; j < _pow; j++)
 			{
 				_num *= 2;
 			}
-			_outcome += _val * _num; 	
+			_outcome += _val * _num;
 		}
 		else
 		{
-			return(0);
+			return (0);
 		}
 	}
 	return (_outcome);
