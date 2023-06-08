@@ -5,7 +5,7 @@
  * @index: the index
  * index starting from 0 of the bit you want to get
  * @n: value
- * Return: the value of the bit at index index or -1 
+ * Return: the value of the bit at index index or -1
  * if an error occured
  */
 
@@ -21,6 +21,6 @@ int get_bit(unsigned long int n, unsigned int index)
 	if ((n & m) != 0)
 		return (1);
 
-	else 
+	else
 		return (0);
 }
