@@ -1,7 +1,9 @@
 #include "main.h"
 
 
-void print_error(int funct_end, const char *error_msg);
+void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
+void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
+void print_error(int file_descrpt, char *f_buffer, const char *file_name);
 
 /**
  * main - a program that copies the content of a file to another file
@@ -34,50 +36,88 @@ void print_error(int funct_end, const char *error_msg);
  */
 int main(int argc, char *argv[])
 {
-	int i;
-	int j;
-	int k;
-	int l;
-	char buff[BUFF_SZ];
+	int f_from;
+	int f_to;
+	int f_read;
+	int f_write;
+	char f_buffer[BUFF_SZ] = "";
 
-	if (argc != 3)
-		print_error(97, "Error: Usage: cp file_from file_to");
+	if (argc != 3) /* checks for cp, f_from, f_to */
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}	
+	
+	f_from = open(argv[1], O_RDONLY);
+	print_error_98(f_from, f_buffer, argv[1]);
 
-	j = open(argv[1], O_RDONLY);
-	if (j == -1)
-		print_error(98, "Error: Can't read from file_from");
-
-	i = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	if (i == -1)
-		print_error(99, "Error: Can't write to file_to");
+	f_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	print_error_98(f_to, f_buffer, argv[2]);
 
 	do {
-		k = read(j, buff, BUFF_SZ);
-		if (k == -1)
-			print_error(98, "Error: Can't read from file");
+		f_read = read(f_from, f_buffer, BUFF_SZ);
+		if (f_read == -1)
+		print_error_98(f_read, f_buffer, argv[1]);
 
-		l = write(i, buff, k);
-		if (l == -1 || l != k)
-			print_error(99, "Error: Can't write to file");
-	} while (l >= BUFF_SZ);
+		f_write = write(f_to, f_buffer, f_read);
+		if (f_write == -1)
+		print_error_99(f_write, f_buffer, argv[2]);
 
-	if (close(i) == -1)
-		print_error(100, "Error: Can't close file descriptor");
+	} while (f_read > 0);
 
-	if (close(j) == -1)
-		print_error(100, "Error: Can't close file descriptor");
+	if (close(f_from) == -1)
+		print_error(100, f_buffer, "Error: Can't close file descriptor");
+	
+	if (close(f_to) == -1)
+		print_error(100, f_buffer, "Error: Can't close file descriptor");
 
 	return (0);
 }
 
 /**
  * print_error - Helper function to print error ans exit
- * @funct_end: end the function
+ * @file_descrpt: file descriptor
  * @error_msg: error message
+ * @f_buffer: the buffer to hold the content
  */
-void print_error(int funct_end, const char *error_msg)
+void print_error(int file_descrpt, char *f_buffer, const char *file_name)
 {
-	dprintf(STDERR_FILENO, "%s\n", error_msg);
-	exit((int)funct_end);
+	dprintf(100, f_buffer, "Error: Can't write to %s\n", file_name);
+	free(f_buffer);
+	exit((int)file_descrpt);
+
+}
+
+/**
+ * print_error_98 - Helper to print error
+ * @file_descrpt: the file descriptor
+ * @file_name: the file name
+ * @f_buffer: the buffer
+ */
+
+void print_error_98(int file_descrpt, char *f_buffer, char *file_name)
+{
+	if (file_descrpt < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", file_name);
+		free(f_buffer);
+		exit(98);
+	}
+}
+
+/**
+ * print_error_99 - Helper function to print error 99
+ * @file_descrpt: File descriptor
+ * @f_buffer: buffer to hold data as actions are happening 
+ * @file_name: the file name
+ */
+
+void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
+{
+	if (file_descrpt < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_name);
+		free(f_buffer);
+		exit(99);
+	}
 }
