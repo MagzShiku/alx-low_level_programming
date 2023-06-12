@@ -83,8 +83,8 @@ void print_error_100(int file_descrpt, char *f_buffer)
 {
 	if (file_descrpt < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close
-				file descriptor %d\n", file_descrpt);
+		dprintf(STDERR_FILENO,
+				"Error: Can't close file descriptor %d\n", file_descrpt);
 		free(f_buffer);
 		exit(100);
 	}
