@@ -65,11 +65,11 @@ int main(int argc, char *argv[])
 
 	} while (f_read > 0);
 
-	if (close(f_from) == -1)
-		print_error(100, f_buffer, "Error: Can't close file descriptor");
+	f_from = close(f_from);
+	print_error_100(f_from, f_buffer);
 	
-	if (close(f_to) == -1)
-		print_error(100, f_buffer, "Error: Can't close file descriptor");
+	f_to = close(f_to);
+	print_error_100(f_to, f_buffer);
 
 	return (0);
 }
@@ -80,11 +80,14 @@ int main(int argc, char *argv[])
  * @error_msg: error message
  * @f_buffer: the buffer to hold the content
  */
-void print_error(int file_descrpt, char *f_buffer, const char *file_name)
+void print_error_100(int file_descrpt, char *f_buffer, const char *file_name)
 {
-	dprintf(100, f_buffer, "Error: Can't write to %s\n", file_name);
-	free(f_buffer);
-	exit((int)file_descrpt);
+	if (file_descriptor < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %D\n", file_descrpt);
+		free(f_buffer);
+		exit(100);
+	}
 
 }
 
