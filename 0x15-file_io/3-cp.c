@@ -3,7 +3,7 @@
 
 void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
-void print_error(int file_descrpt, char *f_buffer, const char *file_name);
+void print_error_100(int file_descrpt, char *f_buffer);
 
 /**
  * main - a program that copies the content of a file to another file
@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
  * @error_msg: error message
  * @f_buffer: the buffer to hold the content
  */
-void print_error_100(int file_descrpt, char *f_buffer, const char *file_name)
+void print_error_100(int file_descrpt, char *f_buffer)
 {
-	if (file_descriptor < 0)
+	if (file_descrpt < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %D\n", file_descrpt);
+		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", file_descrpt);
 		free(f_buffer);
 		exit(100);
 	}
