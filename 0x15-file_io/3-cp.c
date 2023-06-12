@@ -1,14 +1,8 @@
 #include "main.h"
-/**
- * print_error - Helper function to print error ans exit
- * @funct_end: end the function
- * @error_msg: error message
- */
-void print_error(int funct_end, const char *error_msg)
-{
-	dprintf(STDERR_FILENO, "%s\n", error_msg);
-	exit(funct_end);
-}
+
+
+void print_error(int funct_end, const char *error_msg);
+
 /**
  * main - a program that copies the content of a file to another file
  * @argc: argument count
@@ -80,4 +74,15 @@ int main(int argc, char *argv[])
 	if (close(file_to) == -1)
 		print_error(100, "Error: Can't close file descriptor");
 return (0);
+}
+
+/**
+ * print_error - Helper function to print error ans exit
+ * @funct_end: end the function
+ * @error_msg: error message
+ */
+void print_error(int funct_end, const char *error_msg)
+{
+	dprintf(STDERR_FILENO, "%s\n", error_msg);
+	exit(funct_end);
 }
