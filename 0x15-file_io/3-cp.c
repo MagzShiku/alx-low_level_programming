@@ -41,15 +41,15 @@ int main(int argc, char *argv[])
 	char buff[BUFF_SZ];
 	struct stat my_struct;
 
-	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_WRONLY | O_CREAT
-			| O_TRUNC, S_IRUSR | S_IWUSR |
-			S_IRGRP | S_IROTH);
 	if (argc != 3)
 		print_error(97, "Usage: cp file_from file_to");
 
+	file_from = open(argv[1], O_RDONLY);
 	if (file_from == -1)
 		print_error(98, "Error: Can't read from file");
+
+	file_to = open(argv[2], O_WRONLY | 0_CREAT | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (file_to == -1)
 		print_error(99, "Error: Can't write to file");
 
