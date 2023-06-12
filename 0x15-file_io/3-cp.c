@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	int k;
 	int l;
 	char buff[BUFF_SZ];
-	
+
 	if (argc != 3)
 		print_error(97, "Error: Usage: cp file_from file_to");
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 	if (i == -1)
 		print_error(99, "Error: Can't write to file_to");
 
-	do{
+	do {
 		k = read(j, buff, BUFF_SZ);
 		if (k == -1)
 			print_error(98, "Error: Can't read from file");
@@ -62,10 +62,10 @@ int main(int argc, char *argv[])
 			print_error(99, "Error: Can't write to file");
 	} while (l >= BUFF_SZ);
 
-	if (close (i) == -1)
+	if (close(i) == -1)
 		print_error(100, "Error: Can't close file descriptor");
 
-	if (close (j) == -1)
+	if (close(j) == -1)
 		print_error(100, "Error: Can't close file descriptor");
 
 	return (0);
