@@ -34,46 +34,41 @@ void print_error(int funct_end, const char *error_msg);
  */
 int main(int argc, char *argv[])
 {
-	int file_from;
-	int file_to;
-	ssize_t _read;
-	ssize_t _written;
+	int i;
+	int j;
+	int k;
+	int l;
 	char buff[BUFF_SZ];
-	struct stat my_struct;
-
+	
 	if (argc != 3)
-		print_error(97, "Usage: cp file_from file_to");
+		print_error(97, "Error: Usage: cp file_from file_to");
 
-	file_from = open(argv[1], O_RDONLY);
-	if (file_from == -1)
-		print_error(98, "Error: Can't read from file");
+	j = open(argv[1], O_RDONLY);
+	if (j == -1)
+		print_error(98, "Error: Can't read from file_from");
 
-	file_to = open(argv[2], O_WRONLY | 0_CREAT | O_TRUNC,
+	i = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	if (file_to == -1)
-		print_error(99, "Error: Can't write to file");
+	if (i == -1)
+		print_error(99, "Error: Can't write to file_to");
 
-	while ((_read = read(file_from, buff, BUFF_SZ)) > 0)
-	{
-		_written = write(file_to, buff, _read);
-		if (_written == -1 || _written != _read)
-		{
+	do{
+		k = read(j, buff, BUFF_SZ);
+		if (k == -1)
+			print_error(98, "Error: Can't read from file");
+
+		l = write(i, buff, k);
+		if (l == -1 || l != k)
 			print_error(99, "Error: Can't write to file");
-		}
-	}
-	if (_read == -1)
-		print_error(98, "Error: Can't read from file");
-	/**
-	 * function is a system call in C that retrieves
-	 * information about an open file referenced by its descrtpt
-	 */
-	if (fstat(file_to, &my_struct) == -1)
-		print_error(99, "Error: Can't write to file");
-	if (close(file_from) == -1)
+	} while (l >= BUFF_SZ);
+
+	if (close (i) == -1)
 		print_error(100, "Error: Can't close file descriptor");
-	if (close(file_to) == -1)
+
+	if (close (j) == -1)
 		print_error(100, "Error: Can't close file descriptor");
-return (0);
+
+	return (0);
 }
 
 /**
@@ -84,5 +79,5 @@ return (0);
 void print_error(int funct_end, const char *error_msg)
 {
 	dprintf(STDERR_FILENO, "%s\n", error_msg);
-	exit(funct_end);
+	exit((int)funct_end);
 }
