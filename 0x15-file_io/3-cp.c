@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
-	}	
-	
+	}
+
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
 
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
 	f_from = close(f_from);
 	print_error_100(f_from, f_buffer);
-	
+
 	f_to = close(f_to);
 	print_error_100(f_to, f_buffer);
 
@@ -75,16 +75,16 @@ int main(int argc, char *argv[])
 }
 
 /**
- * print_error - Helper function to print error ans exit
+ * print_error_100 - Helper function to print error ans exit
  * @file_descrpt: file descriptor
- * @error_msg: error message
  * @f_buffer: the buffer to hold the content
  */
 void print_error_100(int file_descrpt, char *f_buffer)
 {
 	if (file_descrpt < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", file_descrpt);
+		dprintf(STDERR_FILENO, "Error: Can't close
+				file descriptor %d\n", file_descrpt);
 		free(f_buffer);
 		exit(100);
 	}
@@ -111,7 +111,7 @@ void print_error_98(int file_descrpt, char *f_buffer, char *file_name)
 /**
  * print_error_99 - Helper function to print error 99
  * @file_descrpt: File descriptor
- * @f_buffer: buffer to hold data as actions are happening 
+ * @f_buffer: buffer to hold data as actions are happening
  * @file_name: the file name
  */
 
