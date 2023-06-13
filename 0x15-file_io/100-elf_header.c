@@ -24,7 +24,8 @@
  * You are allowed to use printf
  */
 
-typedef struct {
+typedef struct my_Elf64_Ehddr
+{
 	unsigned char e_ident[EI_NIDENT];/*how to interprete file */
 	uint16_t e_type;/* IDs odject file type*/
 	uint16_t e_machine;/* IDs required arch for a file*/
@@ -39,12 +40,12 @@ typedef struct {
 	uint16_t e_shentsize;/*holds section header size*/
 	uint16_t e_shnum;/*holds no. of entries in section header*/
 	uint16_t e_shstrndx;/*holds sect hdr indx of entry in sct*/
-} ElfN_Ehdr;
+} my_Elf64_Ehdr;
 
 /* lets display ELF(executanle and linkable format hdr info)*/
 /**
  * show_elf_hdr_info - const ElfN_Ehdr
- * ElfN_Ehdr: Parameter 1
+ * my_Elf64_Ehdr: Parameter 1
  * elf_hdr: represents elf header structure
  * 1 display Magic number
  * 2 display elf class
@@ -57,7 +58,7 @@ typedef struct {
  * checks fpr command line args
  */
 
-void show_elf_hdr_info(const ElfN_Ehdr *elf_hdr)
+void show_elf_hdr_info(const my_Elf64_Ehdr *elf_hdr)
 {
 	size_t i;
 
@@ -79,15 +80,15 @@ void show_elf_hdr_info(const ElfN_Ehdr *elf_hdr)
 }
 /**
  * main - function entry point
- * argc: erpresent the number of command line arguments
- * argv: string array that holds the actual arguments
+ * @argc: erpresent the number of command line arguments
+ * @argv: string array that holds the actual arguments
  * Return: 0
  */
 int main(int argc, char *argv[])
 {
 	int file_dsc;
 	ssize_t _read;
-	ElfN_Ehdr elf_hdr;
+	my_Elf64_Ehdr elf_hdr;
 
 	if (argc != 2)
 	{
