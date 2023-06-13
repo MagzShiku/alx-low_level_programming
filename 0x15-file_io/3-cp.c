@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
 	int f_read;
 	int f_write;
 	char *f_buffer;
-	
-	
+
+
 	if (argc != 3) /* checks for cp, f_from, f_to */
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
@@ -131,7 +131,7 @@ void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
 
 /**
  * mk_buffer - buffer being created
- * 
+ *
  * Return: A pointer to the new buffer
  */
 
