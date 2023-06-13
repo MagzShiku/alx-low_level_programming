@@ -4,6 +4,7 @@
 void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_100(int file_descrpt, char *f_buffer);
+char *mk_buffer(void);
 
 /**
  * main - a program that copies the content of a file to another file
@@ -40,14 +41,16 @@ int main(int argc, char *argv[])
 	int f_to;
 	int f_read;
 	int f_write;
-	char f_buffer[BUFF_SZ] = "";
-
+	char *f_buffer;
+	
+	
 	if (argc != 3) /* checks for cp, f_from, f_to */
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
+	f_buffer = mk_buffer();
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
 
@@ -71,6 +74,7 @@ int main(int argc, char *argv[])
 	f_to = close(f_to);
 	print_error_100(f_to, f_buffer);
 
+	free(f_buffer);
 	return (0);
 }
 
@@ -123,4 +127,24 @@ void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
 		free(f_buffer);
 		exit(99);
 	}
+}
+
+/**
+ * mk_buffer - buffer being created
+ * 
+ * Return: A pointer to the new buffer
+ */
+
+char *mk_buffer(void)
+{
+	char *f_buffer;
+
+	f_buffer = (char *)malloc(sizeof(char) * BUFF_SZ);
+	if (!f_buffer)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't allocate momoey\n");
+		exit(99);
+	}
+	return (f_buffer);
+
 }
