@@ -59,10 +59,10 @@ typedef struct {
 
 void show_elf_hdr_info(const ElfN_Ehdr *elf_hdr)
 {
-	int i;
+	size_t i;
 	
 	printf("Magic: ");/*1*/
-	for (i = 0, i < sizeof(elf_hdr->e_ident); i++)
+	for (i = 0; i < sizeof(elf_hdr->e_ident); i++)
 	{
 		printf("%02x ", elf_hdr->e_ident[i]);
 	}
@@ -70,17 +70,17 @@ void show_elf_hdr_info(const ElfN_Ehdr *elf_hdr)
 
 	/*2*/
 	printf("Class: %d-bit\n", (elf_hdr->e_ident[4] == 1) ? 32 : 64);
-	printf("Data: %s\n", (elf_hdr->e_ident[5]) == 1) ? "Little Endian" : "Big Endian";/*3*/
+	printf("Data: %s\n", (elf_hdr->e_ident[5] == 1) ? "Little Endian" : "Big Endian");/*3*/
 	printf("Version: %d\n", elf_hdr->e_version);/*4*/
-	printf("OS/ABI Version: %d\n", elf_hdr-e_ident[7]);/*5*/
+	printf("OS/ABI Version: %d\n", elf_hdr->e_ident[7]);/*5*/
 	printf("ABI Version: %d\n", elf_hdr->e_ident[8]);/*6*/
-	printf("Type: %04x\n", elf_hdr->type);/*7*/
+	printf("Type: %04x\n", elf_hdr->e_type);/*7*/
 	printf("Entry point address: %lx\n", elf_hdr->e_entry);/*8*/
 }
 /**
  * main - function entry point
- * argc: checks fpr cpmmand line arguments
- * argv: checks fpr argument vectors
+ * argc: erpresent the number of command line arguments
+ * argv: string array that holds the actual arguments
  * Return: 0
  */
 int main(int argc, char *argv[])
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
 	if (file_dsc == -1)
 	{
 		fprintf(stderr, "Error: Failed to open the file: %s\n", argv[1]);
-		return (CODE_ERR)'
+		return (CODE_ERR);
 	}
 
 	_read = read(file_dsc, &elf_hdr, sizeof(elf_hdr));
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
 		return (CODE_ERR);
 	}
 
-	if (memcmp(elf_hdr.eident, "\x7f""ELF", 4) != 0)
+	if (memcmp(elf_hdr.e_ident, "\x7f""ELF", 4) != 0)
 	{
 		fprintf(stderr, "Error: not an ELF file\n");
 		close(file_dsc);
