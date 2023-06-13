@@ -1,5 +1,6 @@
 #include "main.h"
 
+#define BUFF_SZ 1024
 
 void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
