@@ -2,8 +2,8 @@
 
 #define BUFF_SZ 1024
 
-void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
-void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
+void print_error_98(int f_from, char *f_buffer, char *argv);
+void print_error_99(int f_from, char *f_buffer, char *argv);
 void print_error_100(int file_descrpt, char *f_buffer);
 char *mk_buffer(char *n);
 /**
@@ -97,16 +97,16 @@ void print_error_100(int file_descrpt, char *f_buffer)
 
 /**
  * print_error_98 - Helper to print error
- * @file_descrpt: the file descriptor
- * @file_name: the file name
+ * @f_from: the file descriptor
+ * @argv[]: the file name
  * @f_buffer: the buffer
  */
 
-void print_error_98(int file_descrpt, char *f_buffer, char *file_name)
+void print_error_98(int f_from, char *f_buffer, char *argv)
 {
-	if (file_descrpt < 0)
+	if (f_from < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", argv);
 		free(f_buffer);
 		exit(98);
 	}
@@ -114,16 +114,16 @@ void print_error_98(int file_descrpt, char *f_buffer, char *file_name)
 
 /**
  * print_error_99 - Helper function to print error 99
- * @file_descrpt: File descriptor
+ * @f_from: File descriptor
  * @f_buffer: buffer to hold data as actions are happening
- * @file_name: the file name
+ * @argv[]: the file name
  */
 
-void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
+void print_error_99(int f_from, char *f_buffer, char *argv)
 {
-	if (file_descrpt < 0)
+	if (f_from < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
 		free(f_buffer);
 		exit(99);
 	}
