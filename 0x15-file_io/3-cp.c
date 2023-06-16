@@ -69,6 +69,8 @@ int main(int argc, char *argv[])
 			free(f_buffer);
 			exit(99);
 		}
+		f_read = read(f_from, f_buffer, BUFF_SZ);
+		f_to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (f_read >= BUFF_SZ);
 
