@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
  */
 void print_error_100(int file_descrpt, char *f_buffer)
 {
-	if (file_descrpt < 0)
+	if (file_descrpt == -1)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Can't close file descriptor %d\n", file_descrpt);
