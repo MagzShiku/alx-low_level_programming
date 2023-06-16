@@ -60,12 +60,10 @@ int main(int argc, char *argv[])
 	do {
 		f_read = read(f_from, f_buffer, BUFF_SZ);
 		if (f_from == -1 || f_read == -1)
-			break;
 		print_error_98(f_read, f_buffer, argv[1]);
 		
 		f_write = write(f_to, f_buffer, f_read);
 		if (f_to == -1 || f_write == -1)
-			break;
 		print_error_99(f_write, f_buffer, argv[2]);
 
 	} while (f_read >= BUFF_SZ);
