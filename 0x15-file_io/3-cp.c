@@ -2,8 +2,6 @@
 
 #define BUFF_SZ 1024
 
-void print_error_98(int f_from, char *f_buffer, char *argv);
-void print_error_99(int f_from, char *f_buffer, char *argv);
 void print_error_100(int file_descrpt, char *f_buffer);
 char *mk_buffer(char *n);
 /**
@@ -52,11 +50,8 @@ int main(int argc, char *argv[])
 
 	f_buffer = mk_buffer(argv[2]);
 	f_from = open(argv[1], O_RDONLY);
-	print_error_98(f_from, f_buffer, argv[1]);
-
 	f_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	print_error_98(f_to, f_buffer, argv[2]);
-
+	
 	do {
 		f_read = read(f_from, f_buffer, BUFF_SZ);
 		if (f_from == -1 || f_read == -1)
