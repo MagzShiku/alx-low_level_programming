@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
 	}
 
 	f_buffer = mk_buffer();
+
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
 
@@ -60,14 +61,14 @@ int main(int argc, char *argv[])
 
 	do {
 		f_read = read(f_from, f_buffer, BUFF_SZ);
-		if (f_read == -1)
+		if (f_read == 0)
+			break;
 		print_error_98(f_read, f_buffer, argv[1]);
 
 		f_write = write(f_to, f_buffer, f_read);
-		if (f_write == -1)
 		print_error_99(f_write, f_buffer, argv[2]);
 
-	} while (f_read > 0);
+	} while (f_read >= BUFF_SZ);
 
 	f_from = close(f_from);
 	print_error_100(f_from, f_buffer);
