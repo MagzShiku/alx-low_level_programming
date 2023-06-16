@@ -5,8 +5,6 @@
 void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_100(int file_descrpt, char *f_buffer);
-char *mk_buffer(void);
-
 /**
  * main - a program that copies the content of a file to another file
  * @argc: argument count
@@ -51,11 +49,10 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	f_buffer = mk_buffer();
-	if (f_buffer == 0)
+	f_buffer = malloc(sizeof(char) * 1024);
+	if (f_buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Failed to allocate memory to buffer\n");
-		exit (99);
+		return (0);
 	}
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
@@ -133,20 +130,4 @@ void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
 		free(f_buffer);
 		exit(99);
 	}
-}
-
-/**
- * mk_buffer - buffer being created
- *
- * Return: A pointer to the new buffer
- */
-
-char *mk_buffer(void)
-{
-	char *f_buffer;
-	
-	f_buffer = malloc(sizeof(char) * BUFF_SZ);
-
-		return (f_buffer);
-
 }
