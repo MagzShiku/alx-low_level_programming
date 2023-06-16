@@ -142,11 +142,10 @@ char *mk_buffer(void)
 	char *f_buffer;
 
 	f_buffer = (char *)malloc(sizeof(char) * BUFF_SZ);
-	if (!f_buffer)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't allocate momoey\n");
-		exit(99);
-	}
+	if (f_buffer == NULL)
+	
+		return (NULL);
 	return (f_buffer);
+	
 
 }
