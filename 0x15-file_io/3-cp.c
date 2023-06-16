@@ -2,7 +2,7 @@
 
 #define BUFF_SZ 1024
 
-void print_error_100(int file_descrpt, char *f_buffer);
+void print_error_100(int file_descrpt);
 char *mk_buffer(char *n);
 /**
  * main - a program that copies the content of a file to another file
@@ -75,10 +75,10 @@ int main(int argc, char *argv[])
 	} while (f_read > 0);
 
 	f_from = close(f_from);
-	print_error_100(f_from, f_buffer);
+	print_error_100(f_from);
 
 	f_to = close(f_to);
-	print_error_100(f_to, f_buffer);
+	print_error_100(f_to);
 
 	free(f_buffer);
 	return (0);
@@ -89,13 +89,12 @@ int main(int argc, char *argv[])
  * @file_descrpt: file descriptor
  * @f_buffer: the buffer to hold the content
  */
-void print_error_100(int file_descrpt, char *f_buffer)
+void print_error_100(int file_descrpt)
 {
 	if (file_descrpt == -1)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Can't close file descriptor %d\n", file_descrpt);
-		free(f_buffer);
 		exit(100);
 	}
 
@@ -112,7 +111,7 @@ char *mk_buffer(char *n)
 	char *f_buffer;
 
 	f_buffer = malloc(sizeof(char) * 1024);
-	if (!f_buffer)
+	if (f_buffer == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", n);
 		exit(99);
