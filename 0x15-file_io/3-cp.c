@@ -52,7 +52,11 @@ int main(int argc, char *argv[])
 	}
 
 	f_buffer = mk_buffer();
-
+	if (f_buffer == 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Failed to allocate memory to buffer\n");
+		exit (99);
+	}
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
 
@@ -140,12 +144,9 @@ void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
 char *mk_buffer(void)
 {
 	char *f_buffer;
+	
+	f_buffer = malloc(sizeof(char) * BUFF_SZ);
 
-	f_buffer = (char *)malloc(sizeof(char) * BUFF_SZ);
-	if (f_buffer == NULL)
-	
-		return (NULL);
-	return (f_buffer);
-	
+		return (f_buffer);
 
 }
