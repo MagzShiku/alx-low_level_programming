@@ -2,7 +2,9 @@
 
 #define BUFF_SZ 1024
 
-void print_error_100(int file_descrpt);
+void print_error_99(int f_from, char *f_buffer, char *argv);
+void print_error_98(int f_from, char *f_buffer, char *argv);
+void print_error_100(int file_descrpt, char *f_buffer);
 char *mk_buffer(char *n);
 /**
  * main - a program that copies the content of a file to another file
@@ -50,35 +52,28 @@ int main(int argc, char *argv[])
 
 	f_buffer = mk_buffer(argv[2]);
 	f_from = open(argv[1], O_RDONLY);
-	f_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	f_read = read(f_from, f_buffer, BUFF_SZ);	
+	print_error_98(f_from, f_buffer, argv[1]);
+
+	f_to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	print_error_98(f_from, f_buffer, argv[2]);
+
 	do {
-		
-		if (f_from == -1 || f_read == -1)
-		{
-			dprintf(STDERR_FILENO, "Can't read from file %s\n", argv[1]);
-			free(f_buffer);
-			exit(98);
-		}
+		f_read = read(f_from, f_buffer, BUFF_SZ);
+		if (f_from == 0)
+			break;
+		print_error_98(f_read, f_buffer, argv[1]);
 
 
 		f_write = write(f_to, f_buffer, f_read);
-		if (f_to == -1 || f_write == -1)
-		{
-			dprintf(STDERR_FILENO, "Can't write to %s\n", argv[2]);
-			free(f_buffer);
-			exit(99);
-		}
-		f_read = read(f_from, f_buffer, BUFF_SZ);
-		f_to = open(argv[2], O_WRONLY | O_APPEND);
+		print_error_98(f_write, f_buffer, argv[2]);
 
-	} while (f_read > 0);
+	} while (f_read >= 1024);
 
 	f_from = close(f_from);
-	print_error_100(f_from);
+	print_error_100(f_from, f_buffer);
 
 	f_to = close(f_to);
-	print_error_100(f_to);
+	print_error_100(f_to, f_buffer);
 
 	free(f_buffer);
 	return (0);
@@ -87,25 +82,57 @@ int main(int argc, char *argv[])
 /**
  * print_error_100 - Helper function to print error ans exit
  * @file_descrpt: file descriptor
- * @f_buffer: the buffer to hold the content
+ * @f_buffer: buffer to hold data
+ *
  */
-void print_error_100(int file_descrpt)
+void print_error_100(int file_descrpt, char *f_buffer)
 {
 	if (file_descrpt == -1)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Can't close file descriptor %d\n", file_descrpt);
+		free(f_buffer);
 		exit(100);
 	}
 
 }
- /**
- * mk_buffer -functio to make buffer
- * @n: the file name for buffer to store data
- * Return: 0
- *
+/**
+ * print_error_99 - Helper function to print error 99
+ * @f_from: Fd
+ * @f_buffer: buffer to hold data
+ * @argv: filename
  */
 
+void print_error_99(int f_from, char *f_buffer, char *argv)
+{
+	if (f_from < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
+		free(f_buffer);
+		exit(99);
+	}
+}
+/**
+ * print_error_98 - Helper function to print error 98
+ * @f_from: Fd
+ * @f_buffer: buffer to hold data
+ * @argv: filename
+ */
+
+void print_error_98(int f_from, char *f_buffer, char *argv)
+{
+	if (f_from < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
+		free(f_buffer);
+		exit(99);
+	}
+}
+/**
+ * mk_buffer - functio to make buffer
+ * @n: the file name for buffer to store data
+ * Return: 0
+ */
 char *mk_buffer(char *n)
 {
 	char *f_buffer;
