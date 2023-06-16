@@ -51,9 +51,9 @@ int main(int argc, char *argv[])
 	f_buffer = mk_buffer(argv[2]);
 	f_from = open(argv[1], O_RDONLY);
 	f_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	
+	f_read = read(f_from, f_buffer, BUFF_SZ);	
 	do {
-		f_read = read(f_from, f_buffer, BUFF_SZ);
+		
 		if (f_from == -1 || f_read == -1)
 		{
 			dprintf(STDERR_FILENO, "Can't read from file %s\n", argv[1]);
