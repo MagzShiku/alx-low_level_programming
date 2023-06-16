@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 		f_read = read(f_from, f_buffer, BUFF_SZ);
 		f_to = open(argv[2], O_WRONLY | O_APPEND);
 
-	} while (f_read >= BUFF_SZ);
+	} while (f_read > 0);
 
 	f_from = close(f_from);
 	print_error_100(f_from, f_buffer);
