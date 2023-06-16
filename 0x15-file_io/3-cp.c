@@ -60,11 +60,20 @@ int main(int argc, char *argv[])
 	do {
 		f_read = read(f_from, f_buffer, BUFF_SZ);
 		if (f_from == -1 || f_read == -1)
-		print_error_98(f_read, f_buffer, argv[1]);
-		
+		{
+			dprintf(STDERR_FILENO, "Can't read from file %s\n", argv[1]);
+			free(f_buffer);
+			exit(98);
+		}
+
+
 		f_write = write(f_to, f_buffer, f_read);
 		if (f_to == -1 || f_write == -1)
-		print_error_99(f_write, f_buffer, argv[2]);
+		{
+			dprintf(STDERR_FILENO, "Can't write to %s\n", argv[2]);
+			free(f_buffer);
+			exit(99);
+		}
 
 	} while (f_read >= BUFF_SZ);
 
@@ -94,42 +103,7 @@ void print_error_100(int file_descrpt, char *f_buffer)
 	}
 
 }
-
-/**
- * print_error_98 - Helper to print error
- * @f_from: the file descriptor
- * @argv: the file name
- * @f_buffer: the buffer
- */
-
-void print_error_98(int f_from, char *f_buffer, char *argv)
-{
-	if (f_from < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", argv);
-		free(f_buffer);
-		exit(98);
-	}
-}
-
-/**
- * print_error_99 - Helper function to print error 99
- * @f_from: File descriptor
- * @f_buffer: buffer to hold data as actions are happening
- * @argv: the file name
- */
-
-void print_error_99(int f_from, char *f_buffer, char *argv)
-{
-	if (f_from < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv);
-		free(f_buffer);
-		exit(99);
-	}
-}
-
-/**
+ /**
  * mk_buffer -functio to make buffer
  * @n: the file name for buffer to store data
  * Return: 0
