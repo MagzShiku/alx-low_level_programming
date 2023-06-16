@@ -5,6 +5,7 @@
 void print_error_98(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_99(int file_descrpt, char *f_buffer, char *file_name);
 void print_error_100(int file_descrpt, char *f_buffer);
+char *mk_buffer(char *n);
 /**
  * main - a program that copies the content of a file to another file
  * @argc: argument count
@@ -49,11 +50,7 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	f_buffer = malloc(sizeof(char) * 1024);
-	if (f_buffer == NULL)
-	{
-		return (0);
-	}
+	f_buffer = mk_buffer(argv[2]);
 	f_from = open(argv[1], O_RDONLY);
 	print_error_98(f_from, f_buffer, argv[1]);
 
@@ -130,4 +127,24 @@ void print_error_99(int file_descrpt, char *f_buffer, char *file_name)
 		free(f_buffer);
 		exit(99);
 	}
+}
+
+/**
+ * mk_buffer -functio to make buffer
+ * @n: the file name for buffer to store data
+ * Return: 0
+ *
+ */
+
+char *mk_buffer(char *n)
+{
+	char *f_buffer;
+
+	f_buffer = malloc(sizeof(char) * 1024);
+	if (!f_buffer)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", n);
+		exit(99);
+	}
+	return (f_buffer);
 }
