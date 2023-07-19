@@ -6,45 +6,51 @@
  * @n: info of node
  * Return: the address of the new node, or NULL if it failed
  */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h,
+		unsigned int idx, int n)
 {
 	dlistint_t *added = malloc(sizeof(dlistint_t));
 	dlistint_t *_temp = *h;
 
 	if (h == NULL)
-	{
 		return (NULL);
-	}
-	if (!added)
+	if (added == NULL)
 		return (NULL);
 	added->n = n;
-	added->prev = NULL;
 	added->next = NULL;
-	if (idx)
+	added->prev = NULL;
+	if (idx == 0)
 	{
-		added->next = *h;
-		if (*h)
+		if (*h != NULL)
 			(*h)->prev = added;
+		added->next = *h;
 		*h = added;
 		return (added);
 	}
-	while (idx > 1 && _temp)
+	for (; idx > 1; idx--)
 	{
+		if (_temp == NULL)
+		{
+			free(added);
+			return (NULL);
+		}
 		_temp = _temp->next;
-		idx--;
 	}
-	if (!_temp && idx == 1)
+	if (!_temp)
 	{
-		return (add_dnodeint_end(h, n));
+		if (*h != NULL)
+		{
+			return (add_dnodeint_end(h, n));
+		}
+			else
+		{
+			free(added);
+			return (NULL);
+		}
 	}
-	if (idx > 1)
-	{
-		free(added);
-		return (NULL);
-	}
-	added->next = _temp->next;
 	added->prev = _temp;
-	if (_temp->next)
+	added->next = _temp->next;
+	if (_temp->next != NULL)
 		_temp->next->prev = added;
 	_temp->next = added;
 	return (added);
