@@ -1,5 +1,5 @@
 #include "main.h"
-int _putchar(char c)
+/*int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
@@ -128,7 +128,7 @@ int _strcmp(char *s1, char *s2)
 
 	res = strcmp(s1, s2);
 	return (res);
-}
+}*/
 char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned char *ch1 = (unsigned char *) s;
@@ -140,7 +140,7 @@ char *_memset(char *s, char b, unsigned int n)
 		*ch1++ = ch2;
 	}
 	return (s);
-}
+}/*
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	return (memcpy(dest, src, n));
@@ -161,4 +161,4 @@ char *_strpbrk(char *s, char *accept)
 char *_strstr(char *haystack, char *needle)
 {
 	return (strstr(haystack, needle));
-}
+}*/
