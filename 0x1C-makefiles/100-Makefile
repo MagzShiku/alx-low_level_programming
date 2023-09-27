@@ -26,3 +26,10 @@ fclean: clean oclean
 re: fclean all
 
 $(OBJ): m.h
+
+NAME = holberton
+SRC = main.c holberton.c
+OBJ = $(SRC:.c=.o)
+
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
