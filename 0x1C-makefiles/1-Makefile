@@ -1,0 +1,7 @@
+# Variables
+CC = gcc
+SRC = main.c school.c
+
+# the Rile to build an executable:
+all: $(SRC)
+	$(CC) $(SRC) -o school
